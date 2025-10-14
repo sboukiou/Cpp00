@@ -4,6 +4,8 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
+# define MAX_BUFF 999999999
+
 PhoneBook::PhoneBook() {
 currentIndex = 0;
 	OldestContactIdx = 0;
@@ -97,10 +99,11 @@ void	PhoneBook::searchContact() {
 	}
 	std::cout << "Pick a specific index to display" << std::endl;
 	std::cin >> Indx;
-	if (Indx > currentIndex || Indx < 0) {
+	while (Indx > currentIndex || Indx < 0 || std::cin.fail()) {
+		std::cin.clear();
+		std::cin.ignore(MAX_BUFF, '\n');
 		std::cout << "Wrong User Id given, Out of scoop" << std::endl;
-		sleep(2);
-		return ;
+		std::cin >> Indx;
 	}
 	system("clear");
 	std::cout << "Here is the User demanded:" << std::endl;
