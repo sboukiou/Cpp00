@@ -15,6 +15,8 @@ class PhoneBook {
 		void	addContact();
 		void	searchContact();
 		void	initPhone();
+		int		getCurrentIdx();
+		void	printField(std::string var) const;
 			
 			
 };

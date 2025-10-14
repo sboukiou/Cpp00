@@ -33,6 +33,10 @@ void	Contact::setFirstName(const std::string &str) {
 	firstName = str;
 }
 
+void	Contact::setLastName(const std::string &str) {
+	lastName = str;
+}
+
 void	Contact::setPhoneNumber(const std::string &str) {
 	phoneNumber = str;
 }
