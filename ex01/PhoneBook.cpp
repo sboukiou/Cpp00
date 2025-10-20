@@ -7,8 +7,8 @@
 # define MAX_BUFF 999999999
 
 PhoneBook::PhoneBook() {
-currentIndex = 0;
-	OldestContactIdx = 0;
+	currentIndex = 0;
+	bookSize = 0;
 }
 
 void	PhoneBook::addContact() {
@@ -59,6 +59,8 @@ void	PhoneBook::addContact() {
 	}
 	contacts[currentIndex].setDarkestSecret(userInput);
 	currentIndex += 1;
+	if (bookSize < 8)
+		bookSize += 1;
 }
 
 void	PhoneBook::printField(std::string var) const {
@@ -90,7 +92,7 @@ void	PhoneBook::searchContact() {
 	std::cout << "  LAST NAME|";
 	std::cout << "  NICK NAME|";
 		std::cout << std::endl;
-	for (int i = 0; i < getCurrentIdx(); i += 1) {
+	for (int i = 0; i < bookSize; i += 1) {
 		std::cout << "|"  "         " << i << "|";
 		printField(contacts[i].getFirstName());
 		printField(contacts[i].getLastName());
@@ -99,7 +101,7 @@ void	PhoneBook::searchContact() {
 	}
 	std::cout << "Pick a specific index to display" << std::endl;
 	std::cin >> Indx;
-	while (Indx > currentIndex || Indx < 0 || std::cin.fail()) {
+	while (Indx >= bookSize || Indx < 0 || std::cin.fail()) {
 		std::cin.clear();
 		std::cin.ignore(MAX_BUFF, '\n');
 		std::cout << "Wrong User Id given, Out of scoop" << std::endl;

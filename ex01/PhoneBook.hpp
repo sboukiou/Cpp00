@@ -8,7 +8,7 @@ class PhoneBook {
 	private:
 		Contact contacts[8];
 		int		currentIndex;
-		int		OldestContactIdx;
+		int		bookSize;
 		std::string userInput;
 	public:
 		PhoneBook();
