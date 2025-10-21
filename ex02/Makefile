@@ -1,7 +1,7 @@
 CPP=c++
 CFLAGS=-Wall -Werror -Wextra -std=c++98
 
-BASE=main.cpp
+BASE=Account.cpp
 SRC=Account.cpp tests.cpp
  
 EX=$(basename $(BASE))

@@ -1,7 +1,7 @@
 CPP=c++
 CFLAGS=-Wall -Werror -Wextra -std=c++98
 
-BASE=main.cpp
+BASE=PhoneBook.cpp
 SRC=Contact.cpp  main.cpp  PhoneBook.cpp
  
 EX=$(basename $(BASE))
