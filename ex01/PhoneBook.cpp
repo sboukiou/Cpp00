@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
+#include <cctype>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -9,6 +10,16 @@
 PhoneBook::PhoneBook() {
 	currentIndex = 0;
 	bookSize = 0;
+}
+
+bool	PhoneBook::isValidString(std::string str) const {
+	if (str.length() == 0)
+		return (false);
+	for (size_t i = 0; i < str.length(); i += 1) {
+		if (std::isprint(str[i]) == false)
+			return (false);
+	}
+	return (true);
 }
 
 void	PhoneBook::addContact() {
@@ -21,40 +32,50 @@ void	PhoneBook::addContact() {
 		currentIndex = 0;
 	std::cout << "Enter first name:" << std::endl;
 	std::getline(std::cin, userInput);
-	while (userInput == "") {
-		std::cout << "[Nothing Was Given !!] Enter first name:" << std::endl;
+	if (std::cin.eof() == true)
+		exit(0);
+	while (userInput == "" || isValidString(userInput) == false) {
+		std::cout << "Enter a valid input !" << std::endl;
 		std::getline(std::cin, userInput);
 	}
 	contacts[currentIndex].setFirstName(userInput);
 
 	std::cout << "Enter last name:" << std::endl;
 	std::getline(std::cin, userInput);
-	while (userInput == "") {
-		std::cout << "[Nothing Was Given !!] Enter last name:" << std::endl;
+	if (std::cin.eof() == true)
+		exit(0);
+	while (userInput == "" || isValidString(userInput) == false) {
+		std::cout << "Enter a valid input !" << std::endl;
 		std::getline(std::cin, userInput);
 	}
 	contacts[currentIndex].setLastName(userInput);
 
 	std::cout << "Enter NickName:" << std::endl;
 	std::getline(std::cin, userInput);
-	while (userInput == "") {
-		std::cout << "[Nothing Was Given !!] Enter nickname:" << std::endl;
+	if (std::cin.eof() == true)
+		exit(0);
+	while (userInput == "" || isValidString(userInput) == false) {
+		std::cout << "Enter a valid input !" << std::endl;
 		std::getline(std::cin, userInput);
 	}
 	contacts[currentIndex].setNickName(userInput);
 
 	std::cout << "Enter Phone Number:" << std::endl;
 	std::getline(std::cin, userInput);
-	while (userInput == "") {
-		std::cout << "[Nothing Was Given !!] Enter Phone Number:" << std::endl;
+	if (std::cin.eof() == true)
+		exit(0);
+	while (userInput == "" || isValidString(userInput) == false) {
+		std::cout << "Enter a valid input !" << std::endl;
 		std::getline(std::cin, userInput);
 	}
 	contacts[currentIndex].setPhoneNumber(userInput);
 
 	std::cout << "Enter Your Darkest Secret ??:" << std::endl;
 	std::getline(std::cin, userInput);
-	while (userInput == "") {
-		std::cout << "[Nothing Was Given !!] Enter Your secret:" << std::endl;
+	if (std::cin.eof() == true)
+		exit(0);
+	while (userInput == "" || isValidString(userInput) == false) {
+		std::cout << "Enter a valid input !" << std::endl;
 		std::getline(std::cin, userInput);
 	}
 	contacts[currentIndex].setDarkestSecret(userInput);
@@ -101,6 +122,8 @@ void	PhoneBook::searchContact() {
 	}
 	std::cout << "Pick a specific index to display" << std::endl;
 	std::cin >> Indx;
+	if (std::cin.eof() == true)
+		exit(0);
 	while (Indx >= bookSize || Indx < 0 || std::cin.fail()) {
 		std::cin.clear();
 		std::cin.ignore(MAX_BUFF, '\n');
