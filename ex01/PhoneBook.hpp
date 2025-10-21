@@ -16,6 +16,7 @@ class PhoneBook {
 		void	searchContact();
 		void	initPhone();
 		int		getCurrentIdx();
+		bool	isValidString(std::string) const;
 		void	printField(std::string var) const;
 			
 			
